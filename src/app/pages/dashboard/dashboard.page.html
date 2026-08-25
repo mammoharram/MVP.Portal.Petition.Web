@@ -1,0 +1,47 @@
+<section class="dashboard">
+    <header class="page-header">
+        <div>
+            <p class="eyebrow">Overview</p>
+            <h2>Case Dashboard</h2>
+        </div>
+        <button type="button" class="primary-btn" routerLink="/petitioner/personal-info">+ New Case</button>
+    </header>
+
+    <section class="status-panel">
+        <div class="panel-header">
+            <h3>Cases by Status</h3>
+        </div>
+
+        <div class="status-grid">
+            <article *ngFor="let item of casesByStatus" class="status-card" [class]="item.color">
+                <span class="status-label">{{ item.label }}</span>
+                <strong class="status-count">{{ item.count }}</strong>
+            </article>
+        </div>
+    </section>
+
+    <section class="recent-panel">
+        <div class="panel-header">
+            <h3>Recent Applications</h3>
+            <a href="#">View all</a>
+        </div>
+
+        <div class="application-list">
+            <div *ngFor="let app of recentApplications" class="application-row">
+                <div class="case-info">
+                    <span class="case-number">{{ app.caseNumber }}</span>
+                    <div class="meta">
+                        <strong>{{ app.employee }}</strong>
+                        <span>{{ app.role }}</span>
+                    </div>
+                </div>
+
+                <span class="status-pill" [ngClass]="app.status.toLowerCase().replace(' ', '-')">
+                    {{ app.status }}
+                </span>
+
+                <span class="updated-at">{{ app.updatedAt }}</span>
+            </div>
+        </div>
+    </section>
+</section>
