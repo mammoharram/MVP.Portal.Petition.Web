@@ -1,0 +1,12 @@
+<!-- src/app/layout/side-nav/side-nav.component.html -->
+<aside class="sidenav-container" [class.collapsed]="!layoutService.isSidebarOpen()">
+    <!-- Main Menu Links Navigation Block -->
+    <nav class="nav-menu">
+        @for (item of menuItems; track item.route) {
+        <a [routerLink]="item.route" routerLinkActive="active-link" class="menu-item" [title]="item.label">
+            <span class="menu-icon">{{ item.icon }}</span>
+            <span class="menu-label">{{ item.label }}</span>
+        </a>
+        }
+    </nav>
+</aside>

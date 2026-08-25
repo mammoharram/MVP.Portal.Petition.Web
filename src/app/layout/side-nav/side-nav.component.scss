@@ -1,0 +1,77 @@
+/* src/app/layout/side-nav/side-nav.component.css */
+:host {
+    display: block;
+    height: 100%;
+}
+
+.sidenav-container {
+    width: 260px;
+    /* Matching the CSS grid footprint we set in the app-shell */
+    height: 100%;
+    background-color: #1f2937;
+    /* Clean enterprise dark slate background */
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    box-sizing: border-box;
+}
+
+/* Collapsed Panel State Footprint Override */
+.sidenav-container.collapsed {
+    width: 68px;
+}
+
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px 8px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    color: #9ca3af;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.menu-item:hover {
+    background-color: #374151;
+    color: #ffffff;
+}
+
+/* Automatic Active Routing Highlight Frame */
+.active-link {
+    background-color: #3b82f6;
+    /* Modern Blue Accent frame color */
+    color: #ffffff !important;
+    font-weight: 500;
+}
+
+.menu-icon {
+    font-size: 1.2rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+}
+
+.menu-label {
+    font-size: 0.95rem;
+    transition: opacity 0.2s ease;
+    opacity: 1;
+}
+
+/* Hides text labels gracefully when the signal transitions to false */
+.sidenav-container.collapsed .menu-label {
+    opacity: 0;
+    pointer-events: none;
+    width: 0;
+    overflow: hidden;
+}
