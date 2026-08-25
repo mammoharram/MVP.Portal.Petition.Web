@@ -1,0 +1,505 @@
+:host {
+    display: block;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.register-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    background: #22262b;
+    // background:
+    //     radial-gradient(circle at 20% 20%,
+    //         rgba(144, 202, 249, 0.55),
+    //         transparent 45%),
+    //     linear-gradient(135deg,
+    //         #0d47a1,
+    //         #1976d2);
+}
+
+.register-card {
+    width: min(580px, 100%);
+    min-height: 820px;
+
+    display: grid;
+    // grid-template-columns: 1fr 1.05fr;
+
+    overflow: hidden;
+
+    border-radius: 38px;
+
+    background: #d7dadd;
+
+    box-shadow:
+        0 30px 80px rgba(13, 71, 161, 0.30);
+}
+
+/* --------------------------------------------------
+   FORM
+-------------------------------------------------- */
+
+.form-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 70px 60px;
+}
+
+.form-content {
+    width: min(385px, 100%);
+}
+
+h1 {
+    margin: 0 0 72px;
+
+    font-family:
+        Inter,
+        Arial,
+        sans-serif;
+
+    font-size: clamp(42px, 4vw, 54px);
+    line-height: 1.05;
+    font-weight: 600;
+    letter-spacing: -2px;
+
+    color: #172b4d;
+}
+
+.subtitle {
+    margin: 0 0 22px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    color: #37474f;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.form-field {
+    position: relative;
+}
+
+.form-field input {
+    width: 100%;
+    height: 64px;
+
+    padding: 0 24px;
+
+    border: 1px solid #e0e7ef;
+    border-radius: 10px;
+
+    outline: none;
+
+    background: #ffffff;
+
+    font-family: inherit;
+    font-size: 16px;
+
+    color: #172b4d;
+
+    box-shadow:
+        0 2px 5px rgba(13, 71, 161, 0.03);
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.form-field input::placeholder {
+    color: #78909c;
+}
+
+.form-field input:focus {
+    border-color: #1976d2;
+
+    box-shadow:
+        0 0 0 2px rgba(25, 118, 210, 0.15);
+}
+
+.password-field input {
+    padding-right: 55px;
+}
+
+.password-toggle {
+    position: absolute;
+
+    top: 50%;
+    right: 20px;
+
+    transform: translateY(-50%);
+
+    border: none;
+    background: transparent;
+    color: #607d8b;
+    cursor: pointer;
+
+    font-size: 19px;
+}
+
+.create-button {
+    height: 64px;
+
+    margin-top: 4px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: #1976d2;
+    color: white;
+
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 12px 24px rgba(25, 118, 210, 0.25);
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.create-button:hover {
+    background: #1565c0;
+
+    box-shadow:
+        0 14px 28px rgba(25, 118, 210, 0.30);
+
+    transform: translateY(-1px);
+}
+
+.login-text {
+    margin: 18px 0 42px;
+
+    font-size: 13px;
+    color: #78909c;
+}
+
+.login-link {
+    padding: 0;
+
+    border: none;
+    background: transparent;
+
+    color: #1976d2;
+
+    font: inherit;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+/* --------------------------------------------------
+   SOCIAL LOGIN
+-------------------------------------------------- */
+.social-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 34px;
+}
+
+.social-button {
+    width: 84px;
+    height: 58px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.social-button:hover {
+    transform: translateY(-2px);
+}
+
+.social-button.active {
+    background: #ffffff;
+
+    border-color: #d4e2f0;
+
+    box-shadow:
+        0 10px 22px rgba(13, 71, 161, 0.12);
+}
+
+.google-icon {
+    font-size: 22px;
+    font-weight: 700;
+
+    background: linear-gradient(45deg,
+            #4285f4,
+            #34a853,
+            #fbbc05,
+            #ea4335);
+
+    background-clip: text;
+    -webkit-background-clip: text;
+
+    color: transparent;
+}
+
+.apple-icon {
+    font-size: 22px;
+    color: #111;
+}
+
+.facebook-icon {
+    width: 24px;
+    height: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #1976d2;
+    color: white;
+
+    font-size: 19px;
+    font-weight: 700;
+}
+
+/* --------------------------------------------------
+   ILLUSTRATION
+-------------------------------------------------- */
+.illustration-section {
+    padding: 22px;
+
+    min-width: 0;
+}
+
+.illustration {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    border-radius: 28px;
+
+    background:
+        linear-gradient(to bottom,
+            #0d47a1 0%,
+            #1976d2 18%,
+            #42a5f5 38%,
+            #90caf9 55%,
+            #bbdefb 72%,
+            #e3f2fd 100%);
+}
+
+/* --------------------------------------------------
+   SUN
+-------------------------------------------------- */
+
+.sun {
+    position: absolute;
+
+    width: 150px;
+    height: 150px;
+
+    top: 25%;
+    left: 38%;
+
+    border-radius: 50%;
+
+    background: #e3f2fd;
+
+    box-shadow:
+        0 0 35px rgba(227, 242, 253, 0.9),
+        0 0 70px rgba(187, 222, 251, 0.65);
+}
+
+/* --------------------------------------------------
+   MOUNTAINS
+-------------------------------------------------- */
+
+.mountain-back {
+    top: 50%;
+
+    height: 23%;
+
+    background: #0d47a1;
+}
+
+.mountain-front {
+    top: 54%;
+
+    height: 15%;
+
+    background: #64b5f6;
+}
+
+/* --------------------------------------------------
+   GROUND
+-------------------------------------------------- */
+
+.ground-one {
+    top: 66%;
+    height: 25%;
+
+    background: #e3f2fd;
+}
+
+.ground-two {
+    top: 76%;
+    height: 25%;
+
+    background: #bbdefb;
+}
+
+.ground-three {
+    top: 87%;
+    height: 25%;
+
+    background: #90caf9;
+}
+
+/* --------------------------------------------------
+   FOREGROUND
+-------------------------------------------------- */
+
+.foreground-shape {
+    position: absolute;
+
+    right: -5%;
+    top: 50%;
+
+    width: 57%;
+    height: 42%;
+
+    border-radius: 50% 0 0 50%;
+
+    background:
+        linear-gradient(135deg,
+            #90caf9,
+            #1976d2);
+
+    transform: rotate(-4deg);
+
+    box-shadow:
+        inset 25px 0 35px rgba(255, 255, 255, 0.20);
+}
+
+.foreground-shape::after {
+    content: '';
+
+    position: absolute;
+
+    left: 12%;
+    top: 8%;
+
+    width: 42%;
+    height: 35%;
+
+    border-radius: 50%;
+
+    background: #bbdefb;
+
+    transform: rotate(15deg);
+}
+
+/* --------------------------------------------------
+   TREES
+-------------------------------------------------- */
+
+.trunk {
+    background: #102a43;
+}
+
+.branches {
+    background:
+        linear-gradient(120deg,
+            transparent 42%,
+            #102a43 43%,
+            #102a43 48%,
+            transparent 49%),
+        linear-gradient(60deg,
+            transparent 42%,
+            #102a43 43%,
+            #102a43 48%,
+            transparent 49%);
+}
+
+/* --------------------------------------------------
+   RESPONSIVE
+-------------------------------------------------- */
+
+@media (max-width: 900px) {
+
+    .register-page {
+        padding: 20px;
+    }
+
+    .register-card {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+
+    .illustration-section {
+        display: none;
+    }
+
+    .form-section {
+        padding: 60px 30px;
+    }
+
+    h1 {
+        margin-bottom: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .register-page {
+        padding: 0;
+    }
+
+    .register-card {
+        min-height: 100vh;
+        border-radius: 0;
+    }
+
+    .form-section {
+        padding: 45px 24px;
+    }
+
+    h1 {
+        font-size: 42px;
+    }
+
+    .social-login {
+        gap: 15px;
+    }
+
+    .social-button {
+        width: 75px;
+    }
+}
