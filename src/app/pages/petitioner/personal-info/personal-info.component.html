@@ -1,0 +1,49 @@
+<section class="personal-info-card">
+    <h2>Personal Information</h2>
+    <p class="subtitle">Please provide your basic personal details.</p>
+
+    <form [formGroup]="personalForm" (ngSubmit)="onSubmit()" class="personal-form">
+        <div class="form-row">
+            <label>
+                <span>First Name</span>
+                <input type="text" formControlName="firstName" placeholder="Enter first name" />
+            </label>
+
+            <label>
+                <span>Last Name</span>
+                <input type="text" formControlName="lastName" placeholder="Enter last name" />
+            </label>
+        </div>
+
+        <div class="form-row">
+            <label>
+                <span>Date of Birth</span>
+                <input type="date" formControlName="dateOfBirth" />
+            </label>
+
+            <label>
+                <span>Country of Birth</span>
+                <input type="text" formControlName="countryOfBirth" placeholder="Enter country" />
+            </label>
+        </div>
+
+        <div class="form-row">
+            <label>
+                <span>Phone</span>
+                <input type="tel" formControlName="phone" placeholder="Enter phone number" />
+            </label>
+
+            <label>
+                <span>Email</span>
+                <input type="email" formControlName="email" placeholder="Enter email address" />
+            </label>
+        </div>
+
+        <label class="full-width">
+            <span>Home Address</span>
+            <textarea formControlName="homeAddress" rows="4" placeholder="Enter home address"></textarea>
+        </label>
+
+        <button type="submit">Save Information</button>
+    </form>
+</section>
