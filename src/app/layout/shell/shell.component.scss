@@ -1,0 +1,34 @@
+.app-container {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    /* Sidenav width | Remaining workspace space */
+    grid-template-rows: 64px 1fr auto;
+    /* Header height | Flexible body content | Footer auto height */
+    grid-template-areas:
+        "header header"
+        "sidenav main"
+        "sidenav footer";
+    height: 100vh;
+    overflow: hidden;
+}
+
+.app-header {
+    grid-area: header;
+}
+
+.app-sidenav {
+    grid-area: sidenav;
+    overflow-y: auto;
+}
+
+.app-footer {
+    grid-area: footer;
+}
+
+.app-main-content {
+    grid-area: main;
+    overflow-y: auto;
+    /* Keeps scrollbar native to main view, avoiding full page bounce */
+    padding: 24px;
+    background-color: #f8f9fa;
+}

@@ -1,0 +1,209 @@
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.page-header,
+.panel-header,
+.application-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.page-header {
+    margin-bottom: 0.5rem;
+}
+
+.eyebrow {
+    margin: 0 0 0.25rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #64748b;
+}
+
+h2,
+h3 {
+    margin: 0;
+    color: #0f172a;
+}
+
+.primary-btn {
+    border: none;
+    border-radius: 10px;
+    background: #2563eb;
+    color: white;
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.status-panel,
+.recent-panel {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.04);
+    padding: 1.25rem;
+}
+
+.status-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.status-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.status-card.blue {
+    border-left: 4px solid #2563eb;
+}
+
+.status-card.purple {
+    border-left: 4px solid #7c3aed;
+}
+
+.status-card.amber {
+    border-left: 4px solid #f59e0b;
+}
+
+.status-card.orange {
+    border-left: 4px solid #f97316;
+}
+
+.status-card.red {
+    border-left: 4px solid #ef4444;
+}
+
+.status-card.green {
+    border-left: 4px solid #10b981;
+}
+
+.status-card.pink {
+    border-left: 4px solid #ec4899;
+}
+
+.status-card.emerald {
+    border-left: 4px solid #059669;
+}
+
+.status-card.gray {
+    border-left: 4px solid #64748b;
+}
+
+.status-label {
+    color: #475569;
+    font-size: 0.85rem;
+}
+
+.status-count {
+    font-size: 2rem;
+    color: #0f172a;
+}
+
+.panel-header {
+    margin-bottom: 0.75rem;
+}
+
+.panel-header a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.application-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.application-row {
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 0.9rem 1rem;
+    background: #f8fafc;
+}
+
+.case-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 0;
+}
+
+.case-number {
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    color: #64748b;
+    font-size: 0.85rem;
+}
+
+.status-pill {
+    padding: 0.4rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.status-pill.attorney-review,
+.status-pill.awaiting-payment,
+.status-pill.rfe {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.status-pill.filed,
+.status-pill.approved {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.status-pill.employer-review {
+    background: #ffedd5;
+    color: #9a4d00;
+}
+
+.status-pill.denied {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.updated-at {
+    color: #64748b;
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+
+    .page-header,
+    .panel-header,
+    .application-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .updated-at {
+        white-space: normal;
+    }
+}

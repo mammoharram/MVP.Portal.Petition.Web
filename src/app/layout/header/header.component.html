@@ -1,0 +1,43 @@
+<!-- src/app/layout/header/header.component.html -->
+<header class="header-navbar">
+    <!-- Left Side: Controls and Branding -->
+    <div class="brand-section">
+        <button class="icon-btn toggle-btn" (click)="layoutService.toggleSidebar()" aria-label="Toggle Side Navigation">
+            ☰
+        </button>
+        <a routerLink="/dashboard" class="logo-link">
+            <img src="/angular.svg" alt="App Logo" class="app-logo" />
+            <span class="app-name">{{ appName }}</span>
+        </a>
+    </div>
+
+    <!-- Right Side: Settings & User Account Actions -->
+    <div class="actions-section">
+        <button class="icon-btn" aria-label="Open Settings" routerLink="/settings">
+            <mat-icon>help</mat-icon>
+        </button>
+
+        <div class="profile-dropdown" [matMenuTriggerFor]="menu">
+            <img [src]="userProfile.avatar" [alt]="userProfile.name" class="user-avatar" />
+            <span class="user-name">{{ userProfile.name }}</span>
+            <!-- <button matIconButton [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                <mat-icon>more_vert</mat-icon>
+            </button> -->
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>
+                    <mat-icon>settings</mat-icon>
+                    <span>Account Settings</span>
+                </button>
+                <button mat-menu-item>
+                    <mat-icon>person</mat-icon>
+                    <span>View Profile</span>
+                </button>
+                <button mat-menu-item (click)="logout()">
+                    <mat-icon>logout</mat-icon>
+                    <span>Sign Out</span>
+                </button>
+            </mat-menu>
+
+        </div>
+    </div>
+</header>
