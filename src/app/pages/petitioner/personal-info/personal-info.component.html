@@ -1,49 +1,81 @@
 <section class="personal-info-card">
-    <h2>Personal Information</h2>
+    <h2 id="personal-info-heading">Personal Information</h2>
     <p class="subtitle">Please provide your basic personal details.</p>
 
-    <form [formGroup]="personalForm" (ngSubmit)="onSubmit()" class="personal-form">
+    <form [formGroup]="personalForm" (ngSubmit)="onSubmit()" class="personal-form"
+        aria-labelledby="personal-info-heading" novalidate>
         <div class="form-row">
-            <label>
-                <span>First Name</span>
-                <input type="text" formControlName="firstName" placeholder="Enter first name" />
+            <label for="first-name">
+                <span>First Name <span aria-hidden="true">*</span></span>
+                <input id="first-name" type="text" formControlName="firstName" placeholder="Enter first name"
+                    autocomplete="given-name" [attr.aria-invalid]="hasError('firstName')"
+                    aria-describedby="first-name-error" />
+                @if (hasError('firstName')) { <div id="first-name-error" class="error-message">{{
+                    errorMessage('firstName') }}</div> }
             </label>
 
-            <label>
-                <span>Last Name</span>
-                <input type="text" formControlName="lastName" placeholder="Enter last name" />
+            <label for="last-name">
+                <span>Last Name <span aria-hidden="true">*</span></span>
+                <input id="last-name" type="text" formControlName="lastName" placeholder="Enter last name"
+                    autocomplete="family-name" [attr.aria-invalid]="hasError('lastName')"
+                    aria-describedby="last-name-error" />
+                @if (hasError('lastName')) { <div id="last-name-error" class="error-message">{{ errorMessage('lastName')
+                    }}</div> }
             </label>
         </div>
 
         <div class="form-row">
-            <label>
-                <span>Date of Birth</span>
-                <input type="date" formControlName="dateOfBirth" />
+            <label for="date-of-birth">
+                <span>Date of Birth <span aria-hidden="true">*</span></span>
+                <input id="date-of-birth" type="date" formControlName="dateOfBirth" [max]="maxDate" autocomplete="bday"
+                    [attr.aria-invalid]="hasError('dateOfBirth')" aria-describedby="date-of-birth-error" />
+                @if (hasError('dateOfBirth')) { <div id="date-of-birth-error" class="error-message">{{
+                    errorMessage('dateOfBirth') }}</div> }
             </label>
 
-            <label>
-                <span>Country of Birth</span>
-                <input type="text" formControlName="countryOfBirth" placeholder="Enter country" />
+            <label for="country-of-birth">
+                <span>Country of Birth <span aria-hidden="true">*</span></span>
+                <input id="country-of-birth" type="text" formControlName="countryOfBirth" placeholder="Enter country"
+                    autocomplete="country-name" [attr.aria-invalid]="hasError('countryOfBirth')"
+                    aria-describedby="country-of-birth-error" />
+                @if (hasError('countryOfBirth')) { <div id="country-of-birth-error" class="error-message">{{
+                    errorMessage('countryOfBirth') }}</div> }
             </label>
         </div>
 
         <div class="form-row">
-            <label>
-                <span>Phone</span>
-                <input type="tel" formControlName="phone" placeholder="Enter phone number" />
+            <label for="phone">
+                <span>Phone <span aria-hidden="true">*</span></span>
+                <input id="phone" type="tel" formControlName="phone" placeholder="Enter phone number" autocomplete="tel"
+                    inputmode="tel" [attr.aria-invalid]="hasError('phone')" aria-describedby="phone-error" />
+                @if (hasError('phone')) { <div id="phone-error" class="error-message">{{ errorMessage('phone') }}</div>
+                }
             </label>
 
-            <label>
-                <span>Email</span>
-                <input type="email" formControlName="email" placeholder="Enter email address" />
+            <label for="email">
+                <span>Email <span aria-hidden="true">*</span></span>
+                <input id="email" type="email" formControlName="email" placeholder="Enter email address"
+                    autocomplete="email" [attr.aria-invalid]="hasError('email')" aria-describedby="email-error" />
+                @if (hasError('email')) { <div id="email-error" class="error-message">{{ errorMessage('email') }}</div>
+                }
             </label>
         </div>
 
-        <label class="full-width">
-            <span>Home Address</span>
-            <textarea formControlName="homeAddress" rows="4" placeholder="Enter home address"></textarea>
+        <label class="full-width" for="home-address">
+            <span>Home Address <span aria-hidden="true">*</span></span>
+            <textarea id="home-address" formControlName="homeAddress" rows="4" placeholder="Enter home address"
+                autocomplete="street-address" [attr.aria-invalid]="hasError('homeAddress')"
+                aria-describedby="home-address-error"></textarea>
+            @if (hasError('homeAddress')) { <div id="home-address-error" class="error-message">{{
+                errorMessage('homeAddress') }}</div> }
         </label>
 
-        <button type="submit">Save Information</button>
+        @if (submissionMessage) {
+        <div class="submission-message" [class.submission-error]="submissionError" role="alert">{{ submissionMessage }}
+        </div>
+        }
+        <button type="submit" [disabled]="isSubmitting">
+            {{ isSubmitting ? 'Saving...' : 'Save Information' }}
+        </button>
     </form>
 </section>

@@ -1,8 +1,8 @@
 export interface PersonalInfoPayload {
-    id: number;
+    id?: number;
     firstName: string;
     lastName: string;
-    dateOfBirth: Date;
+    dateOfBirth: string;
     countryOfBirth: string;
     phone: string;
     email: string;
