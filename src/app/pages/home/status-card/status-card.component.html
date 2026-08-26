@@ -1,0 +1,59 @@
+<mat-card class="application-status-card" appearance="outlined">
+
+    <!-- Header Section -->
+    <mat-card-header>
+        <div mat-card-avatar class="status-avatar-container">
+            <mat-icon [class]="application().status">{{ statusIcon() }}</mat-icon>
+        </div>
+        <mat-card-title>{{ application().title }}</mat-card-title>
+        <mat-card-subtitle>Ref: {{ application().referenceNumber }}</mat-card-subtitle>
+
+        <!-- Status Chip pushed to the right side -->
+        <span class="spacer"></span>
+        <mat-chip-set>
+            <mat-chip [class]="application().status" disabled="false">
+                {{ statusLabel() }}
+            </mat-chip>
+        </mat-chip-set>
+    </mat-card-header>
+
+    <!-- Content Body Section -->
+    <mat-card-content>
+        <div class="status-description">
+            @switch (application().status) {
+            @case ('pending') {
+            <p>Your application package is currently in queue for coordinator assignment.</p>
+            }
+            @case ('in_progress') {
+            <p>An assessor is currently reviewing your uploaded structural documents.</p>
+            }
+            @case ('approved') {
+            <p>This request has been authorized. Check your inbox for physical certificate collection details.</p>
+            }
+            @case ('rejected') {
+            <p>Discrepancies found during processing. Review the manager's addendum comments below.</p>
+            }
+            }
+        </div>
+
+        <!-- Conditional Remarks block -->
+        @if (application().remarks) {
+        <div class="remarks-box">
+            <span class="remarks-label">Reviewer Notes:</span>
+            <p class="remarks-text">{{ application().remarks }}</p>
+        </div>
+        }
+    </mat-card-content>
+
+    <!-- Footer Actions Section -->
+    <mat-card-actions align="end">
+        <span class="timestamp-meta">
+            Updated: {{ application().updatedAt | date:'shortDate' }}
+        </span>
+        <button mat-button color="primary">VIEW DETAILS</button>
+
+        @if (application().status === 'rejected') {
+        <button mat-flat-button color="warn">RESUBMIT</button>
+        }
+    </mat-card-actions>
+</mat-card>

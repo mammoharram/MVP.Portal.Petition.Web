@@ -20,6 +20,7 @@ export class SideNavComponent {
 
   // Structural menu array supporting main items and internal links
   protected menuItems: MenuItem[] = [
+    { label: 'Home', route: '/home', icon: '🏠' },
     { label: 'Dashboard', route: '/dashboard', icon: '📊' },
     { label: 'New Petition', route: '/petitioner/personal-info', icon: '📝' },
     { label: 'Settings', route: '/settings', icon: '⚙️' }
