@@ -8,7 +8,7 @@ export const routes: Routes = [
         children: [
             {
                 path: '',
-                redirectTo: 'dashboard',
+                redirectTo: 'home',
                 pathMatch: 'full'
             },
             {
@@ -22,6 +22,12 @@ export const routes: Routes = [
                 loadComponent: () =>
                     import('./pages/petitioner/personal-info/personal-info.component')
                         .then(m => m.PersonalInfoComponent)
+            },
+            {
+                path: 'home',
+                loadComponent: () =>
+                    import('./pages/home/home.page')
+                        .then(m => m.HomePage)
             }
         ]
     },
