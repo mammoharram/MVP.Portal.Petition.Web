@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { finalize } from 'rxjs';
 import { PersonalInfoService } from '../../../services/personal-info.service';
 import { PersonalInfoPayload } from '../../../interfaces/PersonalInfoPayload.interface';
 
@@ -12,6 +13,10 @@ import { PersonalInfoPayload } from '../../../interfaces/PersonalInfoPayload.int
 })
 export class PersonalInfoComponent implements OnInit {
     personalForm!: FormGroup;
+    isSubmitting = false;
+    submissionMessage = '';
+    submissionError = false;
+    readonly maxDate = new Date().toISOString().split('T')[0];
 
     constructor(
         private fb: FormBuilder,
@@ -20,33 +25,54 @@ export class PersonalInfoComponent implements OnInit {
 
     ngOnInit(): void {
         this.personalForm = this.fb.group({
-            firstName: ['john', Validators.required],
-            lastName: ['doe', Validators.required],
-            dateOfBirth: ['1990-01-01', Validators.required],
-            countryOfBirth: ['United States', Validators.required],
-            phone: ['+1234567890', [Validators.required, Validators.pattern(/^\+?[0-9\s-]{7,15}$/)]],
-            email: ['john.doe@example.com', [Validators.required, Validators.email]],
-            homeAddress: ['123 Main St, Apt 4B, City, State 12345', Validators.required]
+            firstName: ['', [Validators.required, Validators.maxLength(100)]],
+            lastName: ['', [Validators.required, Validators.maxLength(100)]],
+            dateOfBirth: ['', Validators.required],
+            countryOfBirth: ['', [Validators.required, Validators.maxLength(100)]],
+            phone: ['', [Validators.required, Validators.pattern(/^\+?[0-9\s().-]{7,20}$/)]],
+            email: ['', [Validators.required, Validators.email]],
+            homeAddress: ['', [Validators.required, Validators.maxLength(500)]]
         });
     }
 
-    onSubmit(): void {
-        if (this.personalForm.valid) {
-            const payload: PersonalInfoPayload = this.personalForm.value;
+    hasError(controlName: string): boolean {
+        const control = this.personalForm.get(controlName);
+        return !!control?.invalid && !!control.touched;
+    }
 
-            this.personalInfoService.savePersonalInfo(payload).subscribe({
-                next: (response) => {
-                    console.log('Personal information submitted successfully:', response);
+    errorMessage(controlName: string): string {
+        const control = this.personalForm.get(controlName);
+        if (control?.hasError('required')) return 'This field is required.';
+        if (control?.hasError('email')) return 'Enter a valid email address.';
+        if (control?.hasError('pattern')) return 'Enter a valid phone number.';
+        if (control?.hasError('maxlength')) return 'This field is too long.';
+        return '';
+    }
+
+    onSubmit(): void {
+        this.submissionMessage = '';
+        this.submissionError = false;
+        this.personalForm.markAllAsTouched();
+
+        if (this.personalForm.invalid) {
+            this.submissionError = true;
+            this.submissionMessage = 'Please correct the highlighted fields and try again.';
+            return;
+        }
+
+        const payload: PersonalInfoPayload = this.personalForm.getRawValue();
+        this.isSubmitting = true;
+        this.personalInfoService.savePersonalInfo(payload)
+            .pipe(finalize(() => this.isSubmitting = false))
+            .subscribe({
+                next: () => {
+                    this.submissionMessage = 'Personal information saved successfully.';
                     this.personalForm.reset();
                 },
-                error: (error) => {
-                    console.error('Failed to submit personal information:', error);
+                error: () => {
+                    this.submissionError = true;
+                    this.submissionMessage = 'We could not save your information. Please try again.';
                 }
             });
-        } else {
-            alert('Please fill in all required fields correctly before submitting.');
-            console.log('Issues found in personal information:', this.personalForm.value);
-            this.personalForm.markAllAsTouched();
-        }
     }
 }
